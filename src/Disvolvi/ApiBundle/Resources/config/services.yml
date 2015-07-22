@@ -1,0 +1,4 @@
+services:
+#    disvolvi_api.example:
+#        class: Disvolvi\ApiBundle\Example
+#        arguments: [@service_id, "plain_value", %parameter%]

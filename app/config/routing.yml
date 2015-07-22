@@ -1,0 +1,3 @@
+disvolvi_api:
+    resource: "@DisvolviApiBundle/Resources/config/routing.yml"
+    prefix:   /
