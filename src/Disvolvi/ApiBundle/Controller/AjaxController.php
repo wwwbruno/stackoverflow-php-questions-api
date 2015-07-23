@@ -2,8 +2,8 @@
 
 namespace Disvolvi\ApiBundle\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Disvolvi\ApiBundle\Entity\Question;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller,
+    Symfony\Component\HttpFoundation\Response;
 
 class AjaxController extends Controller
 {
@@ -29,7 +29,12 @@ class AjaxController extends Controller
             'tagged' => 'php',
         ));
 
-        $return = $em->getRepository('DisvolviApiBundle:Question')->updateQuestions($response->items);
+        $return = $em->getRepository('DisvolviApiBundle:Question')
+                        ->updateQuestions($response->items);
+
+        $response = $return ? new Response('Created', 201) :
+                              new Response('Error', 500);
+        return $response;
 
     }
 }

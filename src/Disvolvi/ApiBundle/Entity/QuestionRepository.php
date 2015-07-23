@@ -4,6 +4,9 @@ namespace Disvolvi\ApiBundle\Entity;
 
 use Doctrine\ORM\EntityRepository;
 
+use Disvolvi\ApiBundle\Entity\Question,
+    Disvolvi\ApiBundle\Entity\UpdateQuestion;
+
 class QuestionRepository extends EntityRepository
 {
     /**
@@ -17,32 +20,42 @@ class QuestionRepository extends EntityRepository
      */
     public function updateQuestions($questions)
     {
-        foreach ($questions as $question) {
+        foreach ($questions as $_question) {
 
             try {
 
-                if (!$entity = $this->_em->getRepository('DisvolviApiBundle:Question')->findOneByQuestionId($question->question_id))
-                    $entity = new Question();
+              $question = $this->_em
+                            ->getRepository('DisvolviApiBundle:Question')
+                            ->findOneByQuestionId($_question->question_id);
+
+                if (!$question)
+                    $question = new Question();
 
                 $date = new \DateTime();
-                $creation_date = $date->setTimestamp($question->creation_date);
+                $creation_date = $date->setTimestamp($_question->creation_date);
 
-                $entity
-                    ->setQuestionId($question->question_id)
-                    ->setTitle($question->title)
-                    ->setOwnerName($question->owner->display_name)
-                    ->setScore($question->score)
+                $question
+                    ->setQuestionId($_question->question_id)
+                    ->setTitle($_question->title)
+                    ->setOwnerName($_question->owner->display_name)
+                    ->setScore($_question->score)
                     ->setCreationDate($creation_date)
-                    ->setLink($question->link)
-                    ->setIsAnswered($question->is_answered);
+                    ->setLink($_question->link)
+                    ->setIsAnswered($_question->is_answered);
 
-                $this->_em->persist($entity);
+                $this->_em->persist($question);
                 $this->_em->flush();
             } catch (Exception $e) {
 
                 return false;
             }
         }
+
+        $updateQuestion = new UpdateQuestion();
+        $updateQuestion->setDate(new \DateTime());
+
+        $this->_em->persist($updateQuestion);
+        $this->_em->flush();
 
         return true;
     }
