@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Question
  *
  * @ORM\Table("questions")
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Disvolvi\ApiBundle\Entity\QuestionRepository")
  */
 class Question
 {
