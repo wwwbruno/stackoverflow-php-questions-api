@@ -32,6 +32,9 @@ class RestController extends FOSRestController
         if (count($questions) == 0)
             return $this->view('No records found', 404);
 
+        if (isset($questions['error']))
+            return $this->view($questions, 400);
+
         $data = array(
             'last_update' => $em->getRepository("DisvolviApiBundle:UpdateQuestion")->getLastUpdate(),
             'content' => $questions

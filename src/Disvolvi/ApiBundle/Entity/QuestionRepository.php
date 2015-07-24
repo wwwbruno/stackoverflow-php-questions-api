@@ -76,9 +76,38 @@ class QuestionRepository extends EntityRepository
     {
         $page = $request->query->get('page', 1);
         $rpp = $request->query->get('rpp', 15);
-        
+        $sort = $request->query->get('sort', null);
+        $score = $request->query->get('score', null);
+
         $query = $this->_em->getRepository('DisvolviApiBundle:Question')
                             ->createQueryBuilder('q');
+
+        if ($sort) {
+
+          $availableSorts = array(
+              'question_id' => 'questionId',
+              'title' => 'title',
+              'owner_name' => 'ownerName',
+              'score' => 'score',
+              'creation_date' => 'creationDate',
+              'link' => 'link',
+              'is_answered' => 'isAnswered',
+          );
+
+          if (!array_key_exists($sort, $availableSorts))
+              return array('error' => 'Unavailable sort parameter');
+
+          $key = $availableSorts[$sort];
+          $query->orderBy("q.{$key}", 'ASC');
+        }
+
+        if ($score) {
+
+          $query
+              ->andWhere('q.score > :score')
+              ->setParameter('score', $score);
+          $parameters['score'] = $score;
+        }
 
         return $paginator->paginate(
             $query,

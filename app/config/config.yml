@@ -97,3 +97,8 @@ fos_rest:
         default_engine: twig
     routing_loader:
         default_format: json
+
+# KPN Paginator configuration
+knp_paginator:
+    default_options:
+        sort_field_name: sorting
