@@ -74,10 +74,16 @@ class QuestionRepository extends EntityRepository
      */
     public function findPerPage(Request $request, $paginator)
     {
-        $page = $request->query->get('page', 1);
-        $rpp = $request->query->get('rpp', 15);
+        $page = $request->query->get('page');
+        $rpp = $request->query->get('rpp');
         $sort = $request->query->get('sort', null);
         $score = $request->query->get('score', null);
+
+        if (($page and !$rpp) or (!$page and $rpp))
+            return array('error' => "You need to pass 'page' and 'rpp' parameters in order to use one of them");
+
+        if (!$page) $page = 1;
+        if (!$rpp) $rpp = 15;
 
         $query = $this->_em->getRepository('DisvolviApiBundle:Question')
                             ->createQueryBuilder('q');
@@ -106,7 +112,6 @@ class QuestionRepository extends EntityRepository
           $query
               ->andWhere('q.score > :score')
               ->setParameter('score', $score);
-          $parameters['score'] = $score;
         }
 
         return $paginator->paginate(
