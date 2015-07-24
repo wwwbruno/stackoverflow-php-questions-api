@@ -4,6 +4,12 @@ namespace Disvolvi\ApiBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
+use JMS\Serializer\Annotation as JMS,
+    JMS\Serializer\Annotation\Groups,
+    JMS\Serializer\Annotation\VirtualProperty,
+    JMS\Serializer\Annotation\Type,
+    JMS\Serializer\Annotation\SerializedName;
+
 /**
  * Question
  *
@@ -25,6 +31,7 @@ class Question
      * @var integer
      *
      * @ORM\Column(name="questionId", type="integer")
+     * @JMS\Groups({"question"})
      */
     private $questionId;
 
@@ -32,6 +39,7 @@ class Question
      * @var string
      *
      * @ORM\Column(name="title", type="string", length=255)
+     * @JMS\Groups({"question"})
      */
     private $title;
 
@@ -39,6 +47,7 @@ class Question
      * @var string
      *
      * @ORM\Column(name="ownerName", type="string", length=255)
+     * @JMS\Groups({"question"})
      */
     private $ownerName;
 
@@ -46,6 +55,7 @@ class Question
      * @var integer
      *
      * @ORM\Column(name="score", type="integer")
+     * @JMS\Groups({"question"})
      */
     private $score;
 
@@ -60,6 +70,7 @@ class Question
      * @var string
      *
      * @ORM\Column(name="link", type="string", length=255)
+     * @JMS\Groups({"question"})
      */
     private $link;
 
@@ -67,6 +78,7 @@ class Question
      * @var boolean
      *
      * @ORM\Column(name="isAnswered", type="boolean")
+     * @JMS\Groups({"question"})
      */
     private $isAnswered;
 
@@ -79,6 +91,15 @@ class Question
     public function getId()
     {
         return $this->id;
+    }/**
+     * @VirtualProperty
+     * @Type("integer")
+     * @SerializedName("creation_date")
+     * @Groups({"question"})
+     */
+    public function getCreationDateTimestamp()
+    {
+        return $this->creationDate->getTimestamp();
     }
 
     /**

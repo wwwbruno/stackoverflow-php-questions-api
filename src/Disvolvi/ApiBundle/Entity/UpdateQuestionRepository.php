@@ -18,7 +18,15 @@ class UpdateQuestionRepository extends EntityRepository
      */
     public function getLastUpdate()
     {
-        if (!$updateQuestion = $this->_em->getRepository('DisvolviApiBundle:UpdateQuestion'))
+        $updateQuestion = $this->_em
+            ->getRepository('DisvolviApiBundle:UpdateQuestion')
+            ->createQueryBuilder('q')
+            ->orderBy('q.id','desc')
+            ->setMaxResults(1)
+            ->getQuery()
+            ->getOneOrNullResult();
+
+        if (!$updateQuestion)
             return false;
 
         return $updateQuestion->getDate()->getTimestamp();

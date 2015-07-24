@@ -5,3 +5,8 @@ disvolvi_api_homepage:
 disvolvi_api_update_questions:
     path:     /update
     defaults: { _controller: DisvolviApiBundle:Ajax:update }
+
+disvolvi_api_question:
+    type: rest
+    resource: Disvolvi\ApiBundle\Controller\V1\QuestionController
+    prefix: /stack_moblee/v1

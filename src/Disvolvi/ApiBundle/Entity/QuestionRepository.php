@@ -4,6 +4,8 @@ namespace Disvolvi\ApiBundle\Entity;
 
 use Doctrine\ORM\EntityRepository;
 
+use Symfony\Component\HttpFoundation\Request;
+
 use Disvolvi\ApiBundle\Entity\Question,
     Disvolvi\ApiBundle\Entity\UpdateQuestion;
 
@@ -58,5 +60,27 @@ class QuestionRepository extends EntityRepository
         $this->_em->flush();
 
         return true;
+    }
+
+    /**
+     * Find per page
+     *
+     * @param Symfony\Component\HttpFoundation\Request $request
+     * @param Service $paginator
+     * @param integer $page
+     * @param integer $rpp
+     *
+     * @return array
+     */
+    public function findPerPage(Request $request, $paginator, $page, $rpp)
+    {
+        $query = $this->_em->getRepository('DisvolviApiBundle:Question')
+                            ->createQueryBuilder('q');
+
+        return $paginator->paginate(
+            $query,
+            $page,
+            $rpp
+        )->getItems();
     }
 }
