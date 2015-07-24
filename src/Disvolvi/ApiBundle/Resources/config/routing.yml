@@ -2,10 +2,6 @@ disvolvi_api_homepage:
     path:     /
     defaults: { _controller: DisvolviApiBundle:Default:index }
 
-disvolvi_api_update_questions:
-    path:     /update
-    defaults: { _controller: DisvolviApiBundle:Ajax:update }
-
 disvolvi_api_question:
     type: rest
     resource: Disvolvi\ApiBundle\Controller\V1\QuestionController

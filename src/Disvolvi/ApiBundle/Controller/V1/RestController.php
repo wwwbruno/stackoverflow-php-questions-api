@@ -18,18 +18,16 @@ class RestController extends FOSRestController
      * @param Symfony\Component\HttpFoundation\Request $request
      * @param string $entity Entity
      * @param array $groups Group to serialize
-     * @param int $page Page
-     * @param int $rpp Results per page
      *
      * @return json
      */
-    protected function getIndexAction(Request $request, $entity, $groups, $page = 1, $rpp = 15)
+    protected function getIndexAction(Request $request, $entity, $groups)
     {
         $em = $this->getDoctrine()->getManager();
         $paginator = $this->get('knp_paginator');
 
         $questions = $em->getRepository("DisvolviApiBundle:{$entity}")
-            ->findPerPage($request, $paginator, $page, $rpp);
+            ->findPerPage($request, $paginator);
 
         if (count($questions) == 0)
             return $this->view('No records found', 404);

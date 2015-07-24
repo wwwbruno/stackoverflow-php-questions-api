@@ -72,8 +72,11 @@ class QuestionRepository extends EntityRepository
      *
      * @return array
      */
-    public function findPerPage(Request $request, $paginator, $page, $rpp)
+    public function findPerPage(Request $request, $paginator)
     {
+        $page = $request->query->get('page', 1);
+        $rpp = $request->query->get('rpp', 15);
+        
         $query = $this->_em->getRepository('DisvolviApiBundle:Question')
                             ->createQueryBuilder('q');
 
