@@ -1,1 +1,35 @@
-Hello world!
+{% extends 'DisvolviApiBundle::base.html.twig' %}
+{% block body %}
+<section ng-controller="StackOverflowController">
+    <h1>PHP - StackOverflow</h1>
+
+    <button ng-click="updateQuestions()">Persistir dados</button>
+
+    <div class="search">
+      <h2>Buscar na API</h2>
+      <form>
+        <label>
+            Page<br>
+            <input type="integer" name="page" ng-model="request.page" />
+        </label>
+
+        <label>
+            RPP<br>
+            <input type="integer" name="rpp" ng-model="request.rpp" />
+        </label>
+
+        <label>
+            Sort<br>
+            <input type="text" name="sort" ng-model="request.sort" />
+        </label>
+
+        <label>
+            Score<br>
+            <input type="integer" name="score" ng-model="request.score" />
+        </label>
+
+        <button type="submit" ng-click="searchQuestions()">Buscar</button>
+      </form>
+    </div>
+</section>
+{% endblock %}
