@@ -30,7 +30,7 @@ class RestController extends FOSRestController
             ->findPerPage($request, $paginator);
 
         if (count($questions) == 0)
-            return $this->view('No records found', 404);
+            return $this->view(array('error' => 'No records found'), 404);
 
         if (isset($questions['error']))
             return $this->view($questions, 400);

@@ -5,6 +5,9 @@
 
     <button ng-click="updateQuestions()">Persistir dados</button>
 
+    <p class="success" ng-if="updateSuccess">{[{ updateSuccess }]}</p>
+    <p class="error" ng-if="updateError">{[{ updateError }]}</p>
+
     <div class="search">
       <h2>Buscar na API</h2>
       <form>
@@ -30,6 +33,36 @@
 
         <button type="submit" ng-click="searchQuestions()">Buscar</button>
       </form>
+
+      <p class="success" ng-if="searchSuccess">{[{ searchSuccess }]}</p>
+      <p class="error" ng-if="searchError">{[{ searchError }]}</p>
+
     </div>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Id</th>
+          <th>Título</th>
+          <th>Usuário</th>
+          <th>Score</th>
+          <th>Link</th>
+          <th>Respondido</th>
+          <th>Criado em</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="question in questions">
+          <td>{[{ question.question_id }]}</td>
+          <td>{[{ question.title }]}</td>
+          <td>{[{ question.owner_name }]}</td>
+          <td>{[{ question.score }]}</td>
+          <td><a href="{[{ question.link }]}" target="_blank">Link</a></td>
+          <td>{[{ question.is_answered ? 'Sim' : 'Não' }]}</td>
+          <td>{[{ question.creation_date }]}</td>
+        </tr>
+      </tbody>
+    </table>
+
 </section>
 {% endblock %}
