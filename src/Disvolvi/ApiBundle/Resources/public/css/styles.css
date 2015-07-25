@@ -4,36 +4,78 @@ body {
 }
 section {
   padding-top: 30px;
-  width: 800px;
+  width: 900px;
   margin: 0px auto;
 }
+section p.success {
+  color: #73A341;
+}
+section p.error {
+  color: #CE1E1E;
+}
+section button {
+  background: #0099D7;
+  border: 0;
+  color: #FFFFFF;
+  font-size: 17px;
+  padding: 8px 30px;
+  cursor: pointer;
+  border-bottom: 2px solid #0386BA;
+}
+section button:hover {
+  background: #0386BA;
+}
 section .search {
-  background: #eee;
-  width: 750px;
+  background: #EEEEEE;
+  width: 850px;
   padding: 5px 25px 25px 25px;
   margin-top: 25px;
 }
+section .search h2 {
+  color: #666666;
+}
+section .search button {
+  background: #8AC34E;
+  border-bottom: 2px solid #73A341;
+}
+section .search button:hover {
+  background: #73A341;
+}
 section .search label {
+  color: #666666;
   display: inline-block;
-  width: 167px;
-  padding-right: 20px;
+  width: 201px;
+  padding-right: 10px;
 }
 section .search label:last-of-type {
   padding: 0;
 }
 section .search label input {
   width: 100%;
+  border: 0px;
+  height: 30px;
+  border-top: 2px solid #CCCCCC;
 }
 section .search button {
-  display: inline-block;
+  display: inline;
   margin-top: 15px;
 }
-section table {
+section .search table {
   width: 100%;
   margin-top: 25px;
   border-collapse: collapse;
 }
-section table td {
-  border: 1px solid #333;
-  padding: 3px 5px;
+section .search table td {
+  padding: 10px 5px;
+  color: #666666;
+}
+section .search table td a {
+  color: #73A341;
+  text-decoration: none;
+}
+section .search table td a:hover {
+  color: #0386BA;
+}
+section .search table tbody tr:nth-child(odd) {
+  background: #FFFFFF;
 }
