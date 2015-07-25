@@ -13,6 +13,9 @@ section p.success {
 section p.error {
   color: #CE1E1E;
 }
+section p.loading {
+  color: #E08F0D;
+}
 section button {
   background: #0099D7;
   border: 0;

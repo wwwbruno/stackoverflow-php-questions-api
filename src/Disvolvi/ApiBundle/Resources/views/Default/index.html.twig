@@ -7,6 +7,7 @@
 
     <p class="success" ng-if="updateSuccess">{[{ updateSuccess }]}</p>
     <p class="error" ng-if="updateError">{[{ updateError }]}</p>
+    <p class="loading" ng-if="updateLoading">{[{ updateLoading }]}</p>
 
     <div class="search">
       <h2><i>Buscar na API</i></h2>
@@ -36,6 +37,7 @@
 
       <p class="success" ng-if="searchSuccess">{[{ searchSuccess }]}</p>
       <p class="error" ng-if="searchError">{[{ searchError }]}</p>
+      <p class="loading" ng-if="searchLoading">{[{ searchLoading }]}</p>
 
       <table>
         <thead>
