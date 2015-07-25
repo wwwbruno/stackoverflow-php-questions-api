@@ -38,8 +38,8 @@ class QuestionRepository extends EntityRepository
 
                 $question
                     ->setQuestionId($_question->question_id)
-                    ->setTitle($_question->title)
-                    ->setOwnerName($_question->owner->display_name)
+                    ->setTitle(htmlspecialchars_decode($_question->title, ENT_QUOTES))
+                    ->setOwnerName(htmlspecialchars_decode($_question->owner->display_name, ENT_QUOTES))
                     ->setScore($_question->score)
                     ->setCreationDate($creation_date)
                     ->setLink($_question->link)

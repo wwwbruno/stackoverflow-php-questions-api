@@ -6,12 +6,21 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 class DefaultControllerTest extends WebTestCase
 {
-    public function testIndex()
+    public function testIndexIsOnline()
     {
         $client = static::createClient();
 
-        $crawler = $client->request('GET', '/hello/Fabien');
+        $crawler = $client->request('GET', '/');
 
-        $this->assertTrue($crawler->filter('html:contains("Hello Fabien")')->count() > 0);
+        $this->assertTrue($crawler->filter('h1:contains("PHP - StackOverflow")')->count() == 1);
+    }
+
+    public function testDocsIsOnline()
+    {
+        $client = static::createClient();
+
+        $crawler = $client->request('GET', '/stack_moblee/docs');
+
+        $this->assertTrue($crawler->filter('h1:contains("API documentation")')->count() == 1);
     }
 }
