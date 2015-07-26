@@ -4,6 +4,8 @@ namespace Disvolvi\ApiBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
+use Symfony\Component\Validator\Constraints as Assert;
+
 /**
  * UpdateQuestion
  *
@@ -25,6 +27,7 @@ class UpdateQuestion
      * @var \DateTime
      *
      * @ORM\Column(name="date", type="datetime")
+     * @Assert\NotBlank(message="Required field")
      */
     private $date;
 
@@ -32,7 +35,7 @@ class UpdateQuestion
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -55,7 +58,7 @@ class UpdateQuestion
     /**
      * Get date
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getDate()
     {

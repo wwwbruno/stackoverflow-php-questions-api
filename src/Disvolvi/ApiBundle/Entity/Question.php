@@ -4,6 +4,8 @@ namespace Disvolvi\ApiBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
+use Symfony\Component\Validator\Constraints as Assert;
+
 use JMS\Serializer\Annotation as JMS,
     JMS\Serializer\Annotation\Groups,
     JMS\Serializer\Annotation\VirtualProperty,
@@ -32,6 +34,7 @@ class Question
      *
      * @ORM\Column(name="questionId", type="integer")
      * @JMS\Groups({"question"})
+     * @Assert\NotBlank(message="Required field")
      */
     private $questionId;
 
@@ -40,6 +43,7 @@ class Question
      *
      * @ORM\Column(name="title", type="string", length=255)
      * @JMS\Groups({"question"})
+     * @Assert\NotBlank(message="Required field")
      */
     private $title;
 
@@ -48,6 +52,7 @@ class Question
      *
      * @ORM\Column(name="ownerName", type="string", length=255)
      * @JMS\Groups({"question"})
+     * @Assert\NotBlank(message="Required field")
      */
     private $ownerName;
 
@@ -56,6 +61,7 @@ class Question
      *
      * @ORM\Column(name="score", type="integer")
      * @JMS\Groups({"question"})
+     * @Assert\NotBlank(message="Required field")
      */
     private $score;
 
@@ -63,6 +69,7 @@ class Question
      * @var \DateTime
      *
      * @ORM\Column(name="creationDate", type="datetime")
+     * @Assert\NotBlank(message="Required field")
      */
     private $creationDate;
 
@@ -71,6 +78,7 @@ class Question
      *
      * @ORM\Column(name="link", type="string", length=255)
      * @JMS\Groups({"question"})
+     * @Assert\NotBlank(message="Required field")
      */
     private $link;
 
