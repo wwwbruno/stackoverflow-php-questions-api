@@ -1,4 +1,4 @@
-[![Build Status](https://magnum.travis-ci.com/wwwbruno/stackoverflow-php-questions-api.svg?token=hWqTK96oxQsRZHHLmWQU&branch=master)](https://magnum.travis-ci.com/wwwbruno/stackoverflow-php-questions-api)
+[![Build Status](https://travis-ci.org/wwwbruno/stackoverflow-php-questions-api.svg?branch=master)](https://travis-ci.org/wwwbruno/stackoverflow-php-questions-api)
 
 # StackOverflow PHP Questions API
 API for search PHP related questions in StackOverflow
