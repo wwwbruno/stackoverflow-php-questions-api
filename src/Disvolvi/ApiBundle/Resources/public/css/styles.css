@@ -72,11 +72,11 @@ section .search table td {
   padding: 10px 5px;
   color: #666666;
 }
-section .search table td a {
+section .search a {
   color: #73A341;
   text-decoration: none;
 }
-section .search table td a:hover {
+section .search a:hover {
   color: #0386BA;
 }
 section .search table tbody tr:nth-child(odd) {
